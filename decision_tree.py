@@ -21,13 +21,14 @@ class DecisionTree:
         Args:
             - X: training data excluding target feature
             - y: the target of training data
-            - max_depth: the maximal depth of the tree
+            - max_depth: maximal depth of the tree
         '''
         self.X_tr = X
         self.y_tr = y
         self.root = TreeNode(self.X_tr, self.y_tr, np.arange(self.X_tr.shape[0]), 0, self.max_depth)
         self.fitted = True
-        print('Fitting the data successfully.')
+        if self.verbose:
+            print('Fitting the data successfully.')
     
     def predict(self, X_ts, prob=False):
         '''Predict the target values of data X_ts with the decision tree.
