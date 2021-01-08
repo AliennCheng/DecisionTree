@@ -10,7 +10,7 @@ class DecisionTree:
     
     '''
     
-    def __init__(self, max_depth=20, verbose=False):
+    def __init__(self, max_depth=30, verbose=False):
         self.max_depth = max_depth
         self.verbose = verbose
         self.fitted = False

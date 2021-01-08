@@ -34,6 +34,9 @@ def split_node(X, y, idx):
         - i_max: the feature index with the largest IG
         - split_pt[i_max]: the split point of the return feature
     '''
+    
+    # TODO: try every possible split point rather than median
+
     _, n_features = X.shape
     H_X = np.empty(n_features)
     split_pt = np.empty(n_features)

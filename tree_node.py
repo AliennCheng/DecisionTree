@@ -21,7 +21,10 @@ class TreeNode:
         if self.is_leaf:
             val, cnt = np.unique(self.y[self.idx], return_counts=True)
             self.response = val[np.argmax(cnt)]
-            self.probability = cnt / len(idx)
+            try:
+                self.probability = float(cnt[val == 1] / len(idx))
+            except:
+                self.probability = 0
         else:
             self.response = None
         
@@ -64,13 +67,13 @@ class TreeNode:
                 print('\nSplit feature: #', self.split_feature)
                 print('x[', self.split_feature, '] = ', X_ts[self.split_feature])
                 print('Split condition: <= ', self.split_point)
-            return self.left_child.predict(X_ts, verbose)
+            return self.left_child.predict(X_ts, prob=prob, verbose=verbose)
         else:
             if verbose:
                 print('\nSplit feature: #', self.split_feature)
                 print('x[', self.split_feature, '] = ', X_ts[self.split_feature])
                 print('Split condition: > ', self.split_point)
-            return self.right_child.predict(X_ts, verbose)
+            return self.right_child.predict(X_ts, prob=prob, verbose=verbose)
     
     def show(self):
         '''Print the node information onto the screen.
